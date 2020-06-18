@@ -19,9 +19,14 @@ export const reducer = (state, action) => {
             return [...state, {item:action.payload, completed: false, id:Date.now()}];
         case "TOGGLE_COMPLETED":
             return state.map(todoItem =>{
-                //if(todoItem.item === action.payload) todoItem.completed = !todoItem.completed;//couldn't think of a better way to decide which item to complete
+                if(todoItem.item === action.payload) return {...todoItem, completed: !todoItem.completed};
+                return todoItem;
             });
-            //return [...state, {item:action.payload, completed: true, id:Date.now()}];
+        case "CLEAR_COMPLETED":
+            return state.filter(todoItem => {
+                console.log("Clear called");
+                if(!todoItem.completed) return todoItem;
+            });
         default:
             return state;
 

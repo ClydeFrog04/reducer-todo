@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React from "react";
 import {Card, CardTitle, Row, Col} from "reactstrap";
 import "./TodoCard.css";
 import {initialState, reducer} from "../reducers/reducer";
