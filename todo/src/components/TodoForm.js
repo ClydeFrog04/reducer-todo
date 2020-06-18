@@ -1,6 +1,5 @@
-import React, {useReducer, useState} from "react";
-import {Form, FormGroup, Label, Input, Button} from "reactstrap";
-import {initialState, reducer} from "../reducers/reducer";
+import React, {useState} from "react";
+import {Form, FormGroup, Label, Input, Button, Card} from "reactstrap";
 
 const TodoForm = ({dispatch, state}) => {
 
@@ -8,8 +7,10 @@ const TodoForm = ({dispatch, state}) => {
 
     const submitItem = e => {
         e.preventDefault();
-        dispatch({type:"ADD_TODO", payload:todoItem});
-        clearForm();
+        if(todoItem) {
+            dispatch({type: "ADD_TODO", payload: todoItem});
+            clearForm();
+        }
     }
     const handleChange = e => {
         setTodoItem(e.target.value);
@@ -20,6 +21,7 @@ const TodoForm = ({dispatch, state}) => {
 
     return (
         <div className="todoForm">
+            <Card style={{padding: "10px"}} color="secondary">
             <Form onSubmit={submitItem}>
                 <FormGroup>
                     <Label for="todoItem">Add Todo Item:</Label>
@@ -31,8 +33,9 @@ const TodoForm = ({dispatch, state}) => {
                         id="todoItem"
                         placeholder="todo..."/>
                 </FormGroup>
-                <Button>Submit</Button>
+                <Button color="success">Submit</Button>
             </Form>
+            </Card>
         </div>
     );
 }

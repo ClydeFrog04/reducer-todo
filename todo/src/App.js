@@ -3,7 +3,7 @@ import './App.css';
 import TodoCard from "./components/TodoCard";
 import {initialState, reducer} from "./reducers/reducer";
 import TodoForm from "./components/TodoForm";
-import {Row, Col, Button} from "reactstrap";
+import {Row, Col, Button, Card} from "reactstrap";
 
 
 function App() {
@@ -14,17 +14,26 @@ function App() {
     return (
         <div className="App">
             <Row>
-                <Col sm="12" md={{ size: 6, offset: 3 }}>{/*sm 12 means 12 divisions, not sure why we use md for the offset but it centers everything. taken from reactstrap layout docs*/}
+                <Col sm="12" md={{
+                    size: 6,
+                    offset: 3
+                }}>{/*sm 12 means 12 divisions, not sure why we use md for the offset but it centers everything. taken from reactstrap layout docs*/}
                     <TodoForm state={state} dispatch={dispatch}/>
-                    <Button onClick={() => dispatch({type:"CLEAR_COMPLETED"})}>Clear Completed</Button>
-                    {state.map(todoItem => {
-                        return <TodoCard dispatch={dispatch} key={todoItem.id} completed={todoItem.completed} cardTitle={todoItem.item}/>
-                    })}
+                    <Button color="success" style={{margin: "10px"}}
+                            onClick={() => dispatch({type: "CLEAR_COMPLETED"})}>Clear Completed</Button>
+                    {state.length > 0 ?
+                    <Card color="secondary">
+                        {state.map(todoItem => {
+                            return <TodoCard dispatch={dispatch} key={todoItem.id} completed={todoItem.completed}
+                                             cardTitle={todoItem.item}/>
+                        })}
+                    </Card> : null}
                 </Col>
             </Row>
         </div>
     );
 }
+
 export default App;
 
 

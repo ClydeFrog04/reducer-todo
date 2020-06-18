@@ -14,8 +14,6 @@ export const initialState = [
 export const reducer = (state, action) => {
     switch (action.type) {
         case "ADD_TODO":
-            console.log("Reducer add todo called");
-            console.log([...state, {item:action.payload, completed: false, id:Date.now()}]);
             return [...state, {item:action.payload, completed: false, id:Date.now()}];
         case "TOGGLE_COMPLETED":
             return state.map(todoItem =>{

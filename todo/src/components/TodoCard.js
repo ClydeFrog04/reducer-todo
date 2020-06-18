@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardTitle, Row, Col} from "reactstrap";
+import {Card, CardTitle, CardText, Row, Col} from "reactstrap";
 import "./TodoCard.css";
 import {initialState, reducer} from "../reducers/reducer";
 
@@ -14,10 +14,10 @@ const TodoCard = ({dispatch, cardTitle, completed}) => {
         <div className="todoCard">
             <Row>
                 <Col sm="3">
-                    <Card color="dark" onClick={toggleCompleted}>
-                        <CardTitle
+                    <Card color="success" onClick={toggleCompleted}>
+                        <CardText
                             className={completed ? "linethrough" : ""}
-                            style={{color: '#f1f1f1'}}>{cardTitle}</CardTitle>
+                            style={{color: '#f1f1f1'}}>{cardTitle}</CardText>
                     </Card>
                 </Col>
             </Row>
